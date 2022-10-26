@@ -7,24 +7,34 @@
     <title>Peys App</title>
 </head>
 <body>
-    <form method="post">
+
+    <?php
+       $imgSize = 20;
+       $color = '#000000';
+
+        if(isset($_GET['btnProcess'])){ 
+            $imgSize = $_GET['rngSize'];
+            $color = $_GET['clrBorder'];
+        }
+    ?>
+
+    <form method="get">
         <h2>Peys App</h2>
 
-        <label for="photoSizer">Select Photo Size</label>
+        <label for="rngSize">Select Photo Size</label>
         
-        <input type="range" name="photoSizer" id="ranger" min="10" max="100" value="60" step="10"><br>
+        <input type="range" name="rngSize" id="rngSize" min="10" max="100" value="60" step="10"><br>
         
         <label for="clrBorder">Select Border Color</label>
         <input type="color" name="clrBorder" id="clrBorder"><br>
 
         <input type="submit" name="btnProcess" value="Process"><br>
 
-        <img src="NicoRobin.jpg" alt="" id="image">
     </form>
 
+    <br><br>
 
+    <img src="Nico_Robin.jpg" alt="NicoRobin.jpg" width="<?php echo $imgSize; ?>%" border="5%" style="color:<?php echo $color; ?>">
 
-
-    <script src="js/script.js"></script>
 </body>
 </html>

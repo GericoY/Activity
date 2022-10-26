@@ -71,7 +71,7 @@
                 if($size == 'Regular'){
                     $addOn = 0;
                 }
-                elseif($size == 'Up-Size'){
+                elseif($size == 'Up-size'){
                     $addOn = 5;
                 }
                 elseif($size == 'Jumbo'){
@@ -82,8 +82,7 @@
                 foreach ($pop as $popKey => $popValue){
                     echo
                     '<ul>
-                        <li>'
-                        . $quantity .' '. $term . ' of ' . $size .' '. $popKey .' amounting ₱'. $totalVal = 
+                        <li>'. $quantity .' '. $term . ' of ' . $size .' '. $popKey .' amounting ₱'. $totalVal = 
                         intval($popValue) * intval($quantity) + ($addOn * intval($quantity)) .
                         '</li>
                     </ul>';
