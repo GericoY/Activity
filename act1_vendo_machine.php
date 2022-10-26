@@ -1,5 +1,6 @@
 <?php
-    $sizes = array('Regular', 'Up-Size (add ₱5)', 'Jumbo (add ₱10)');
+    $sodasArr = array('Coke' => 15, 'Sprite' => 20, 'Royal' => 20, 'Pepsi' => 15, 'Mountain Dew' => 20);
+    $sizesArr = array('Regular' => 'Regular', 'Up-size (add ₱5)' => 'Up-size', 'Jumbo (add ₱10)' => 'Jumbo');
 ?>
 
 <!DOCTYPE html>
@@ -11,39 +12,93 @@
     <title>Vendo Machine</title>
 </head>
 <body>
+    <h3>Vendo Machine</h3>
     <form method="post">
-        <h1>Vendo Machine</h1>
-        <fieldset>
-            <legend>Products</legend>
-            <input type="checkbox" name="chkProduct[]" id="chkCoke" value="Coke"> <label for="chkCoke">Coke</label><br>
-            <input type="checkbox" name="chkProduct[]" id="chkSprite" value="Sprite"> <label for="chkSprite">Sprite</label><br>
-            <input type="checkbox" name="chkProduct[]" id="chkRoyal" value="Royal"> <label for="chkRoyal">Royal</label><br>
-            <input type="checkbox" name="chkProduct[]" id="chkPepsi" value="Pepsi"> <label for="chkPepsi">Pepsi</label><br>
-            <input type="checkbox" name="chkProduct[]" id="chkMountainDew" value="MountainDew"> <label for="chkMountainDew">Mountain Dew</label>
+
+        <fieldset style="width: 450px;">
+            <legend>Products: </legend>
+
+            <?php
+                if(isset($sodasArr)){
+                    foreach ($sodasArr as $sodasKey => $sodasValue){
+                        echo '<input type="checkbox" name="chkSoda['. $sodasKey .']" value="'. $sodasValue . '">
+                        <label>'. $sodasKey .' - ₱'. $sodasValue . '</label><br>';
+                    }
+                }
+            ?>
         </fieldset>
 
-        <fieldset>
+        <fieldset style="display: inline-block;">
             <legend>Options:</legend>
-            <label for="drpSize">Size</label>
 
+            <label for="drpSize"></label>
             <select name="drpSize" id="drpSize">
                 <?php
-                    foreach($sizes as $key => $value){
-                        echo '<option value="'.$value.'">'. $value .'</option>';
+                    if(isset($sizesArr)){
+                        foreach($sizesArr as $sizesKey => $sizesValue){
+                            echo '<option value="'. $sizesValue .'">'. $sizesKey .'</option>';
+                        }
                     }
                 ?>
             </select>
 
-            <label for="txtNumber">Quantity</label>
-            <input type="number" name="txtNumber" id="txtNumber" min="0">
-            <input type="submit" name="btnCheckout" value="Check Out">
-        </fieldset>
-        <hr>
+            <label for="numQuantity">Quantity</label>
+            <input type="number" name="numQuantity" id="numQuantity" min="0" value="0">
 
-        <?php
-            
-        ?>
+            <button type="submit" name="btnSubmit">Check Out</button>
+        </fieldset>
+
     </form>
-    
+
+    <?php
+        if(isset($_POST['btnSubmit'])){
+
+            if(isset($_POST['chkSoda']) && isset($_POST['drpSize'])){
+
+                $quantity = $_POST['numQuantity'];
+                $size = $_POST['drpSize'];
+                $pop = $_POST['chkSoda'];
+
+                //Quantity
+                if($quantity == 1){
+                    $term = "piece";
+                }
+                else{
+                    $term = "pieces";
+                }
+
+                //Sizes
+                if($size == 'Regular'){
+                    $addOn = 0;
+                }
+                elseif($size == 'Up-Size'){
+                    $addOn = 5;
+                }
+                elseif($size == 'Jumbo'){
+                    $addOn = 10;
+                }
+
+                echo '<hr><h3>Purchase Summary</h3>';
+                foreach ($pop as $popKey => $popValue){
+                    echo
+                    '<ul>
+                        <li>'
+                        . $quantity .' '. $term . ' of ' . $size .' '. $popKey .' amounting ₱'. $totalVal = 
+                        intval($popValue) * intval($quantity) + ($addOn * intval($quantity)) .
+                        '</li>
+                    </ul>';
+                }
+
+                $itemsTotal = ($quantity *sizeof($pop));
+                $grandTotal = (array_sum($pop) + $addOn * $quantity) * $quantity;
+
+                echo '<label><b>Total Number of Items:</b></label>'. $itemsTotal .'<br>';
+                echo '<label><b>Total Amount:</b></label>'. $grandTotal;
+            }      
+            else{
+                echo '<hr>No Selected Product. Try Again.';
+            }
+        }
+    ?>
 </body>
 </html>

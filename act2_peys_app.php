@@ -12,16 +12,19 @@
 
         <label for="photoSizer">Select Photo Size</label>
         
-        <input type="range" name="photoSizer" id="photoSizer" min="10" max="100" value="60" step="10"><br>
+        <input type="range" name="photoSizer" id="ranger" min="10" max="100" value="60" step="10"><br>
         
         <label for="clrBorder">Select Border Color</label>
         <input type="color" name="clrBorder" id="clrBorder"><br>
 
         <input type="submit" name="btnProcess" value="Process"><br>
 
-        <img src="NicoRobin.jpg" alt="" width="600" height="600">
+        <img src="NicoRobin.jpg" alt="" id="image">
     </form>
 
-    
+
+
+
+    <script src="js/script.js"></script>
 </body>
 </html>
