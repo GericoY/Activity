@@ -68,20 +68,7 @@
                         </div>';
                     }
                 }
-                else{
-                    echo
-                    '<div class="container-fluid text-center alert-size mt-3">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            Invalid Username / Password
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>';
-                }
-            }
-            elseif($status === $users[1]['type']){
-                if($name === $users[1]['username']){
+                elseif($name === $users[1]['username']){
                     if($pass === $users[1]['password']){
                         echo
                         '<div class="container-fluid text-center alert-size mt-3">
@@ -142,20 +129,7 @@
                         </div>';
                     }
                 }
-                else{
-                    echo
-                    '<div class="container-fluid text-center alert-size mt-3">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            Invalid Username / Password
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>';
-                }
-            }
-            elseif($status === $users[3]['type']){
-                if($name === $users[3]['username']){
+                elseif($name === $users[3]['username']){
                     if($pass === $users[3]['password']){
                         echo
                         '<div class="container-fluid text-center alert-size mt-3">
@@ -227,17 +201,6 @@
                         </div>
                     </div>';
                 }
-            }
-            else{
-                echo
-                '<div class="container-fluid text-center alert-size mt-3">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Invalid Username / Password
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>';
             }
         }
     ?>
